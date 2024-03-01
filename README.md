@@ -5,10 +5,6 @@ This project is the react-native packaging of NodeMediaClient-Android and NodeMe
 
 Complete live publish and play functions, providing the exact same API call. You can publish two platforms just by developing one set of programs.  
 
-
-## 0.Enter the project directory
-cd AwesomeProject
-
 ## 1.Install
 npm i react-native-nodemediaclient
 
@@ -30,6 +26,8 @@ Open AwesomeProject/android/app/src/main/AndroidManifest.xml, Add
 <uses-permission android:name="android.permission.FLASHLIGHT"/>
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 ```
+
+https://reactnative.dev/docs/permissionsandroid
 
 ### iOS
 Open AwesomeProject/ios/QLive/Info.plist , Add:
