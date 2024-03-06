@@ -9,8 +9,7 @@ Complete live publish and play functions, providing the exact same API call. You
 npm i react-native-nodemediaclient
 
 ## 2.Install dependencies
-cd ios  
-pod install
+npx pod-install ios
 
 ## 3.Permission
 
@@ -38,8 +37,5 @@ Open AwesomeProject/ios/QLive/Info.plist , Add:
 <string>AwesomeProject requires access to your phone’s Microphone.</string>
 ```
 
-## Note for android
-If you have enabled progaurd in release don't forget to add this to `proguard-rules.pro` file:
-```
--keep class cn.nodemedia.** {*;} 
-```
+## Demo
+https://github.com/NodeMedia/iShow
