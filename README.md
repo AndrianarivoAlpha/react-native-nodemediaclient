@@ -5,6 +5,8 @@ This project is the react-native packaging of NodeMediaClient-Android and NodeMe
 
 Complete live publish and play functions, providing the exact same API call. You can publish two platforms just by developing one set of programs.  
 
+A commercial license is required.
+
 ## 1.Install
 npm i react-native-nodemediaclient
 
