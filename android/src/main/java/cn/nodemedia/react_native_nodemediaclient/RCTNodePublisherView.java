@@ -113,6 +113,10 @@ public class RCTNodePublisherView extends FrameLayout implements LifecycleEventL
         np.setKeyFrameInterval(keyFrameInterval);
     }
 
+    public void setVolume(float volume) {
+        np.setVolume(volume);
+    }
+
     public void startPreview() {
         mIsPreview = true;
         np.openCamera(mFrontCamera);

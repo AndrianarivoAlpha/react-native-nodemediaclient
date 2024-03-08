@@ -77,6 +77,7 @@ NodePublisher.propTypes = {
     roomRatio: PropTypes.number,
     videoOrientation: PropTypes.number,
     keyFrameInterval: PropTypes.number,
+    volume: PropTypes.number,
     onEvent: PropTypes.func,
 };
 NodePublisher.NMC_CODEC_ID_H264 = 27;

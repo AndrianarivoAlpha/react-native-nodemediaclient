@@ -94,6 +94,10 @@
     [_np setKeyFrameInterval:keyFrameInterval];
 }
 
+- (void)setVolume:(float)volume {
+    [_np setVolume:volume];
+}
+
 - (void)setAudioParam:(NSDictionary *)audioParam {
     int codecid = [[audioParam objectForKey:@"codecid"] intValue];
     int profile = [[audioParam objectForKey:@"profile"] intValue];

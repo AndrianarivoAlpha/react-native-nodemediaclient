@@ -114,6 +114,12 @@ public class RCTNodePublisherManager extends ViewGroupManager<RCTNodePublisherVi
         view.setKeyFrameInterval(keyFrameInterval);
     }
 
+    @ReactProp(name = "volume")
+    public void setVolume(RCTNodePublisherView view, float volume) {
+        view.setVolume(volume);
+    }
+
+
     @Override
     public void receiveCommand(@NonNull RCTNodePublisherView root, String commandId, @Nullable ReadableArray args) {
         switch (commandId) {
