@@ -12,7 +12,9 @@ import { requireNativeComponent, UIManager, findNodeHandle } from 'react-native'
 class NodePublisher extends React.Component {
 
     componentDidMount = () => {
-        this.startPreview();
+        if (this.props.videoParam) {
+            this.startPreview();
+        }
     }
 
     componentWillUnmount = () => {
@@ -21,19 +23,19 @@ class NodePublisher extends React.Component {
     }
 
     start = () => {
-        UIManager.dispatchViewManagerCommand(findNodeHandle(this),"start",[]);
+        UIManager.dispatchViewManagerCommand(findNodeHandle(this), "start", []);
     }
 
     stop = () => {
-        UIManager.dispatchViewManagerCommand(findNodeHandle(this),"stop",[]);
+        UIManager.dispatchViewManagerCommand(findNodeHandle(this), "stop", []);
     }
 
     startPreview = () => {
-        UIManager.dispatchViewManagerCommand(findNodeHandle(this),"startPreview",[]);
+        UIManager.dispatchViewManagerCommand(findNodeHandle(this), "startPreview", []);
     }
 
     stopPreview = () => {
-        UIManager.dispatchViewManagerCommand(findNodeHandle(this),"stopPreview",[]);
+        UIManager.dispatchViewManagerCommand(findNodeHandle(this), "stopPreview", []);
     }
 
     _onChange(event) {
