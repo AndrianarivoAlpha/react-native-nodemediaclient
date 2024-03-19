@@ -1,5 +1,8 @@
+## 0.3.4 - 2024-03-19
+NodePublisher只有在设置了videoParam的情况下自动预览摄像头
+
 ## 0.3.3 - 2024-03-08
-NodePublisher增加volume属性，可用于推流中静音。
+NodePublisher 增加volume属性，可用于推流中静音。
 
 ## 0.3.2 - 2024-03-06
 更新Android sdk到3.2.7，修复音频推流声道兼容问题
