@@ -1,5 +1,5 @@
 {
-	"name": "react-native-nodemediaclient-agp-fix",
+	"name": "react-native-nodemediaclient",
 	"version": "0.3.6",
 	"description": "This project is the react-native packaging of NodeMediaClient-Android and NodeMediaClient-iOS SDK. (Forked to add AGP 8+ compatibility)",
 	"main": "src/index",
