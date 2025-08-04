@@ -1,45 +1,48 @@
-buildscript {
-  repositories {
-    google()
-    mavenCentral()
-  }
+// In modern Gradle, the buildscript block is no longer needed here.
+// The Android Gradle Plugin version is determined by the root project,
+// which prevents version conflicts.
 
-  dependencies {
-    classpath "com.android.tools.build:gradle:7.2.1"
-  }
-}
-
+// Helper function to check if the new architecture (Fabric) is enabled.
 def isNewArchitectureEnabled() {
   return rootProject.hasProperty("newArchEnabled") && rootProject.getProperty("newArchEnabled") == "true"
 }
 
 apply plugin: "com.android.library"
 
+// Apply the React Native Gradle plugin if the new architecture is enabled.
 if (isNewArchitectureEnabled()) {
   apply plugin: "com.facebook.react"
 }
 
+// Helper function to safely get properties from the root project, with a fallback.
+// This allows the main project to override versions for compileSdkVersion, etc.
 def getExtOrDefault(name) {
   return rootProject.ext.has(name) ? rootProject.ext.get(name) : project.properties["Nodemediaclient_" + name]
 }
 
 def getExtOrIntegerDefault(name) {
-  return rootProject.ext.has(name) ? rootProject.ext.get(name) : (project.properties["Nodemediaclient_" + name]).toInteger()
+    // A slightly safer version that handles both String and Integer types from properties.
+    def value = getExtOrDefault(name)
+    return value instanceof Integer ? value : value.toInteger()
 }
 
+// Helper function to detect if the current AGP version supports the `namespace` property.
+// Namespace support was added in AGP 7.3 and is mandatory in AGP 8.0+.
 def supportsNamespace() {
   def parsed = com.android.Version.ANDROID_GRADLE_PLUGIN_VERSION.tokenize('.')
   def major = parsed[0].toInteger()
   def minor = parsed[1].toInteger()
-
-  // Namespace support was added in 7.3.0
   return (major == 7 && minor >= 3) || major >= 8
 }
 
 android {
+  // Use the namespace property for modern AGP versions to ensure compatibility.
   if (supportsNamespace()) {
-    namespace "cn.nodemediaclient"
+    namespace "cn.nodemedia.react_native_nodemediaclient"
 
+    // To prevent a build error from having both a `namespace` in bui   `ld.gradle
+    // and a `package` in the manifest, we point to a different manifest file
+    // that has the `package` attribute removed.
     sourceSets {
       main {
         manifest.srcFile "src/main/AndroidManifestNew.xml"
@@ -52,7 +55,6 @@ android {
   defaultConfig {
     minSdkVersion getExtOrIntegerDefault("minSdkVersion")
     targetSdkVersion getExtOrIntegerDefault("targetSdkVersion")
-
   }
 
   buildTypes {
@@ -62,6 +64,7 @@ android {
   }
 
   lintOptions {
+    // Suppresses common compatibility warnings that are not critical for React Native.
     disable "GradleCompatible"
   }
 
@@ -71,18 +74,21 @@ android {
   }
 }
 
+// Repositories needed to download this library's dependencies.
 repositories {
   mavenCentral()
   google()
+  // The NodeMediaClient-Android dependency is hosted on JitPack.
   maven { url 'https://jitpack.io' }
 }
 
-
+// Dependencies required by this library.
 dependencies {
-  // For < 0.71, this will be from the local maven repo
-  // For > 0.71, this will be replaced by `com.facebook.react:react-android:$version` by react gradle plugin
+  // For RN < 0.71, this will be from the local maven repo.
+  // For RN >= 0.71, this is replaced by the correct version by the React Native Gradle Plugin.
   //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
+
+  // The core native Android library for NodeMediaClient.
   implementation 'com.github.NodeMedia:NodeMediaClient-Android:3.2.9'
 }
-

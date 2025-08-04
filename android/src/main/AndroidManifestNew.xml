@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- This file is used by modern versions of the Android Gradle Plugin (7.3+). -->
+  <!-- The "package" attribute has been removed to avoid conflicts with the -->
+  <!-- "namespace" property defined in the build.gradle file. -->
+
 </manifest>
